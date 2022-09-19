@@ -152,6 +152,8 @@ public class Intarface extends javax.swing.JFrame {
         jtxtEntry.setText(null);
         jlblConvertion.setText(null);
         jcmbSelection.setSelectedItem(0);
+        jbConvert.setEnabled(false);
+        jbReset.setEnabled(false);
     }//GEN-LAST:event_jbResetActionPerformed
 
     private void jbConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConvertActionPerformed
