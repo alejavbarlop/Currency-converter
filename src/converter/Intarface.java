@@ -17,6 +17,9 @@ public class Intarface extends javax.swing.JFrame {
      */
     public Intarface() {
         initComponents();
+        setLocationRelativeTo(null);
+        jbConvert.setEnabled(false);
+        jbReset.setEnabled(false);
     }
 
     /**
@@ -37,6 +40,7 @@ public class Intarface extends javax.swing.JFrame {
         jbExit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jlblWarning1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,10 +49,15 @@ public class Intarface extends javax.swing.JFrame {
         jLabel1.setText("Conversor de Divisas");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        jcmbSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Divisa a Convertir", "USD > ARS", "ARS > USD", "USD > REAL", "REAL > USD" }));
+        jcmbSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD > ARS", "ARS > USD", "USD > REAL", "REAL > USD" }));
 
         jtxtEntry.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jtxtEntry.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtxtEntry.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxtEntryKeyReleased(evt);
+            }
+        });
 
         jlblConvertion.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         jlblConvertion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,26 +91,29 @@ public class Intarface extends javax.swing.JFrame {
 
         jLabel3.setText("Conversiones Disponibles");
 
+        jlblWarning1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlblWarning1.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
-                        .addComponent(jcmbSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtxtEntry)
-                        .addComponent(jlblConvertion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jbConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                    .addComponent(jtxtEntry)
+                    .addComponent(jlblConvertion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jlblWarning1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcmbSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,18 +125,20 @@ public class Intarface extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtxtEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblWarning1)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel3)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcmbSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(7, 7, 7)
                 .addComponent(jlblConvertion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbReset, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,12 +182,32 @@ public class Intarface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbConvertActionPerformed
 
+    private void jtxtEntryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtEntryKeyReleased
+        if (jtxtEntry.getText().contains("1")
+                || jtxtEntry.getText().contains("2")
+                || jtxtEntry.getText().contains("3")
+                || jtxtEntry.getText().contains("4")
+                || jtxtEntry.getText().contains("5")
+                || jtxtEntry.getText().contains("6")
+                || jtxtEntry.getText().contains("7")
+                || jtxtEntry.getText().contains("8")
+                || jtxtEntry.getText().contains("9")
+                || jtxtEntry.getText().contains("0")){
+            jlblWarning1.setText("");
+            jbConvert.setEnabled(true);
+            jbReset.setEnabled(true);
+        } else {
+            jlblWarning1.setText("Debes solo Ingresar Números");
+            jbConvert.setEnabled(false);
+            jbReset.setEnabled(true);
+        }
+    }//GEN-LAST:event_jtxtEntryKeyReleased
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* Set the Nimbus look and feel */        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -212,6 +246,7 @@ public class Intarface extends javax.swing.JFrame {
     private javax.swing.JButton jbReset;
     private javax.swing.JComboBox<String> jcmbSelection;
     private javax.swing.JLabel jlblConvertion;
+    private javax.swing.JLabel jlblWarning1;
     private javax.swing.JTextField jtxtEntry;
     // End of variables declaration//GEN-END:variables
 }

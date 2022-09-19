@@ -14,8 +14,7 @@ public class Converter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Intarface j = new Intarface();
-        j.setVisible(true);
+
     }
     
 }
